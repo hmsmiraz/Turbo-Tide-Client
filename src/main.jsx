@@ -7,6 +7,8 @@ import ErrorPage from "./Components/Pages/ErrorPage/ErrorPage.jsx";
 import Home from "./Components/Pages/Home/Home.jsx";
 import Brand from "./Components/Pages/Brand/Brand";
 import AddingBrand from "./Components/Pages/addingBrand/AddingBrand";
+import AddingProduct from "./Components/Pages/addingProduct/addingProduct";
+import Products from "./Components/Products/Products";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,22 @@ const router = createBrowserRouter([
         path: "/addBrand",
         element: <AddingBrand></AddingBrand>
       },
+      {
+        path: "/addProduct",
+        element: <AddingProduct></AddingProduct>,
+        loader: () => fetch('http://localhost:5000/products'),
+      },
+      {
+        path: "/brand/:name",
+        element: <Products></Products>,
+        loader: ({ params }) => fetch(`http://localhost:5000/brand/${params.name}`),
+      },
+      // {
+      //   path: "/products",
+      //   element: <Products></Products>,
+      //   loader: () => fetch('http://localhost:5000/products'),
+      //    loader: ({ params }) => fetch(`http://localhost:5000/brand/${params.name}`),
+      // },
     ],
   },
 ]);

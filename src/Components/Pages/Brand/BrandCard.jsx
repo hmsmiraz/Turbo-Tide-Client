@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const BrandCard = ({ brands }) => {
   const { _id, name, picture } = brands;
   return (
@@ -10,7 +12,9 @@ const BrandCard = ({ brands }) => {
           <h2 className="card-title ">{name}</h2>
         </div>
         <div className="card-actions">
-          <button className="btn btn-primary">View Products</button>
+          <Link to={`/brands/${name}`}>
+            <button className="btn btn-primary">View Products</button>
+          </Link>
         </div>
       </div>
     </div>

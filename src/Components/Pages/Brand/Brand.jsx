@@ -5,8 +5,8 @@ const Brand = () => {
     const brandsAll = useLoaderData();
     return (
         <div className="my-10">
-            <h2 className="text-center text-3xl font-bold ">Choose Your Future Companion {brandsAll.length}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-2">
+            <h2 className="text-center text-3xl font-bold my-5 ">Choose Your Future Companion</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-2">
                 {
                     brandsAll.map(brands=> <BrandCard
                     key={brands._id}

@@ -58,7 +58,7 @@ const AddingBrand = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">Picture</span>
                 </label>
                 <input
                   type="text"
@@ -68,7 +68,9 @@ const AddingBrand = () => {
                   required
                 />
               </div>
-              <input type="submit" value="Add Brand" className="btn btn-neutral" />
+              <div className='w-full'>
+              <input type="submit" value="Add Product" className="btn btn-neutral" />
+              </div>
             </form>
           </div>
         </div>
