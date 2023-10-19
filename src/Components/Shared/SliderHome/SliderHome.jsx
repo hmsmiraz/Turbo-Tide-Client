@@ -20,7 +20,7 @@ const SliderHome = () => {
       caption: "Your Journey, Our Magic",
     },
     {
-      url: "https://i.ibb.co/1GgcnKz/eric-michael-KA9-W4k0p-On4-unsplash.jpg",
+      url: "https://i.ibb.co/b5DPYFj/3.jpg",
       caption: "Expect the Unexpected",
     },
     {
