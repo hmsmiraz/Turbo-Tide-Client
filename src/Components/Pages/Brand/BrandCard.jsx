@@ -12,7 +12,7 @@ const BrandCard = ({ brands }) => {
           <h2 className="card-title ">{name}</h2>
         </div>
         <div className="card-actions">
-          <Link to={`/brands/${name}`}>
+          <Link to={`/brand/${name}`}>
             <button className="btn btn-primary">View Products</button>
           </Link>
         </div>

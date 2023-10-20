@@ -76,6 +76,7 @@ const AddingProduct = () => {
                     <input
                       type="text"
                       name="brandName"
+                      id="brandName"
                       placeholder="Brand Name"
                       className="input input-bordered"
                       required
