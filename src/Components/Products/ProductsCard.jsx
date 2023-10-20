@@ -1,6 +1,5 @@
 import { BsFillStarFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-
 const ProductsCard = ({ products }) => {
   const {
     _id,

@@ -1,6 +1,30 @@
+import { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { AuthContext } from "../Providers/AuthProviders";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: "Log out Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+      })
+      .catch();
+  };
     const navLinks = (
         <>
           <li>
@@ -60,9 +84,39 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to={"/login"}>
-        <button className="btn">Login</button>
-        </Link>
+      <div className="flex items-center justify-center">
+          <div>
+            {user ? (
+              <p className="font-light text-xs w-10 lg:w-20">
+                {user.displayName}
+              </p>
+            ) : (
+              ""
+            )}
+          </div>
+          <div>
+            {user ? (
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-5 lg:w-10 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <div>
+          {user ? (
+            <button onClick={handleSignOut} className="btn">
+              Sign Out
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn">Login</button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

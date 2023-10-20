@@ -8,54 +8,71 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
     console.log(email, password);
     signIn(email, password)
-    .then((result) => {
-      console.log(result.user);
-      Swal.fire({
-        title: "Success!",
-        text: "Login Successfully",
-        icon: "success",
-        confirmButtonText: "Cool",
-      });
-      navigate(location?.state ? location.state : "/");
-      
-    })
-    .catch((error) => {
-      console.error(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: error
-      })  
-    });
-};
-const handleGoogleLogin = () => {
-  signInGoogle()
-    .then((result) => {
-      console.log(result);
-      Swal.fire({
-        title: "Success!",
-        text: "Login Successfully",
-        icon: "success",
-        confirmButtonText: "Cool",
-      });
-      navigate(location?.state ? location.state : "/");
-    })
-    .catch((error) => {
-      console.log(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: error
+      .then((result) => {
+        console.log(result.user);
+        const user = {
+          email,
+          uId: result.user?.uid,
+        };
+        // update last logged at in the database
+        fetch(
+          "http://localhost:5000/users",
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+        Swal.fire({
+          title: "Success!",
+          text: "Login Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+        navigate(location?.state ? location.state : "/");
       })
-    });
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: error,
+        });
+      });
+  };
+  const handleGoogleLogin = () => {
+    signInGoogle()
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          title: "Success!",
+          text: "Login Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: error,
+        });
+      });
   };
   return (
     <div>
@@ -102,7 +119,7 @@ const handleGoogleLogin = () => {
           </Link>
         </p>
         <p className="text-center my-2">
-          <button onClick={handleGoogleLogin}  className="btn btn-primary">
+          <button onClick={handleGoogleLogin} className="btn btn-primary">
             Google
           </button>
         </p>

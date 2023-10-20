@@ -1,6 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ProductUpdate = () => {
+    const location = useLocation();
+  const navigate = useNavigate();
   const productSingle = useLoaderData();
   const {
     _id,
@@ -8,7 +11,6 @@ const ProductUpdate = () => {
     brandName,
     ProductType,
     Price,
-    description,
     rating,
     picture,
   } = productSingle;
@@ -33,13 +35,33 @@ const ProductUpdate = () => {
       rating,
       picture,
     };
-
     console.log(updateProduct);
+     // send data to the server
+     fetch(`http://localhost:5000/products/${_id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(updateProduct)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Product Updated Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+                navigate(location?.state ? location.state : "/");
+            }
+        })
   };
   return (
     <div>
       <h2 className="text-center text-2xl font-bold text-teal-600 mb-2">
-        Update Products Here:
+        Update Products Here: {productSingle.productName}
       </h2>
       <div className="hero bg-base-200 ">
         <div className="hero-content">
@@ -130,9 +152,7 @@ const ProductUpdate = () => {
                       required
                     />
                   </div>
- 
                 </div>
-
               </div>
               <div className="flex justify-center items-center text-center mt-2">
                     <input

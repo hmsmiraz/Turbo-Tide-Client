@@ -4,15 +4,14 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { updateProfile } from "Firebase/auth";
 const Register = () => {
-    const [registerError, setRegisterError] = useState("");
-    const [success, setSuccess] = useState("");
-    const { createUser } = useContext(AuthContext);
-    // const { createUser } = useContext(AuthContext);
-    const location = useLocation();
-    const navigate = useNavigate();
+  const [registerError, setRegisterError] = useState("");
+  const [success, setSuccess] = useState("");
+  const { createUser } = useContext(AuthContext);
+  // const { createUser } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
-
     e.preventDefault();
     console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
@@ -21,44 +20,62 @@ const Register = () => {
     const photo = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
-    console.log(name, photo, email, password);
     setRegisterError("");
     setSuccess("");
 
     createUser(email, password)
-    .then((result) => {
-      setSuccess("User Created Successfully.");
-      console.log(result.user);
-      updateProfile(result.user, {
-        displayName: name,
-        photoURL: photo,
-      })
-        .then(() => {
-          console.log("updated");
-          Swal.fire({
-            title: "Success!",
-            text: "Register Successfully",
-            icon: "success",
-            confirmButtonText: "Cool",
+      .then((result) => {
+        setSuccess("User Created Successfully.");
+        console.log(result.user);
+        const user = {
+            email,
+            uId: result.user?.uid,
+          };
+        fetch(
+          "http://localhost:5000/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              console.log("user added to the database");
+            }
           });
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
         })
-        .catch((error) => {
-          console.log(error);
-          setRegisterError(error.message);
+          .then(() => {
+            console.log("updated");
+            Swal.fire({
+              title: "Success!",
+              text: "Register Successfully",
+              icon: "success",
+              confirmButtonText: "Cool",
+            });
+            // window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error);
+            setRegisterError(error.message);
+          });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: error,
         });
-      navigate(location?.state ? location.state : "/");
-      // window.location.reload();
-    })
-    .catch((error) => {
-      console.error(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: error
-      })   
-    });
-
+      });
   };
   return (
     <div>

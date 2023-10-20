@@ -14,6 +14,7 @@ import ProductUpdate from "./Components/Pages/ProductUpdate/ProductUpdate";
 import Login from "./Components/Pages/Login/Login";
 import Register from "./Components/Pages/Register/Register";
 import AuthProviders from "./Components/Providers/AuthProviders";
+import Users from "./Components/Pages/Users/Users";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,15 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/user",
+        element: <Users></Users>,
+        loader: ()=> fetch('http://localhost:5000/users')
       },
     ],
   },
