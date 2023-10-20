@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const navLinks = (
@@ -13,7 +13,7 @@ const Navbar = () => {
             <NavLink to="/myCart">My Cart</NavLink>
           </li>
           <li>
-            <NavLink to="/register">Login</NavLink>
+            <NavLink to="/register">Register</NavLink>
           </li>
         </>
       );
@@ -46,9 +46,13 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="w-10 rounded-full">
+          <Link to={"/"}>
           <img src="/logo.svg" />
+          </Link>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Turbo Tide</a>
+        <Link to={"/"}>
+        <button className="btn btn-ghost normal-case text-xl">Turbo Tide</button>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -56,7 +60,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Login</a>
+        <Link to={"/login"}>
+        <button className="btn">Login</button>
+        </Link>
       </div>
     </div>
   );
