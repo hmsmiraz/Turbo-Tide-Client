@@ -1,5 +1,5 @@
 import { BsFillStarFill } from "react-icons/bs";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductsCard = ({ products }) => {
   const {
@@ -44,8 +44,12 @@ const ProductsCard = ({ products }) => {
             </div>
           </div>
           <div className="card-actions flex gap-5">
+            <Link to={`/products/${_id}`}>
             <button className="btn btn-neutral">Details</button>
+            </Link>
+            {/* <Link to={`/product/${_id}`}>
             <button className="btn btn-accent">Update</button>
+            </Link> */}
           </div>
         </div>
       </div>
