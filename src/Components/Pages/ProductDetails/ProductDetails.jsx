@@ -39,8 +39,8 @@ const ProductDetails = () => {
               </div>
             </div>
             <p><span className="text-sm font-bold">Details:</span> {description}</p>
-            <div className="card-actions ">
-              <button className="btn btn-info w-full text-gray-700 text-sm">Add to cart <BsFillCartPlusFill /></button>
+            <div className="card-actions justify-center">
+              <button className="btn btn-info text-gray-700 text-sm">Add to cart <BsFillCartPlusFill /></button>
             </div>
           </div>
         </div>

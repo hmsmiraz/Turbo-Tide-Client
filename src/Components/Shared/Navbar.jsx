@@ -13,7 +13,7 @@ const Navbar = () => {
             <NavLink to="/myCart">My Cart</NavLink>
           </li>
           <li>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register">Login</NavLink>
           </li>
         </>
       );
