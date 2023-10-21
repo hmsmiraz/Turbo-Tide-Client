@@ -5,6 +5,7 @@ import { useContext } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from "../Providers/AuthProviders";
+// import { BsFillSunFill, BsMoonFill } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -27,23 +28,26 @@ const Navbar = () => {
       })
       .catch();
   };
-    const navLinks = (
-        <>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/addProduct">Add Product</NavLink>
-          </li>
-          <li>
-            <NavLink to="/Cart">Cart</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
-        </>
-      );
-    
+  const navLinks = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/addBrand">Add Brand</NavLink>
+      </li>
+      <li>
+        <NavLink to="/addProduct">Add Product</NavLink>
+      </li>
+      <li>
+        <NavLink to="/Cart">Cart</NavLink>
+      </li>
+      <li>
+        <NavLink to="/register">Register</NavLink>
+      </li>
+    </>
+  );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -73,20 +77,38 @@ const Navbar = () => {
         </div>
         <div className="w-10 rounded-full">
           <Link to={"/"}>
-          <img src="/logo.svg" />
+            <img src="/logo.svg" />
           </Link>
         </div>
         <Link to={"/"}>
-        <button className="btn btn-ghost normal-case text-xl">Turbo Tide</button>
+          <button className="btn btn-ghost normal-case text-xl">
+            Turbo Tide
+          </button>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-        {navLinks}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-      <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center">
+          {/* for dark mode */}
+        {/* <div>
+          {user ? (
+            <button>
+              <BsMoonFill
+                id="theme-toggle-dark-icon"
+                className="hidden w-5 h-5"
+              ></BsMoonFill>
+            </button>
+          ) : (
+            <button>
+              <BsFillSunFill
+                id="theme-toggle-light-icon"
+                className="hidden w-5 h-5"
+              ></BsFillSunFill>
+            </button>
+          )}
+        </div> */}
           <div>
             {user ? (
               <p className="font-light text-xs w-10 lg:w-20">
@@ -111,7 +133,7 @@ const Navbar = () => {
         <div>
           {user ? (
             <button onClick={handleSignOut} className="btn">
-              Sign Out
+              Log Out
             </button>
           ) : (
             <Link to="/login">

@@ -1,16 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import CartCard from "./CartCard";
 
 const Cart = () => {
   const cartProducts = useLoaderData();
+  const [productAll, setProductAll] = useState(cartProducts);
   const { user } = useContext(AuthContext);
   const email = user?.email;
-  const filteredCart = cartProducts.filter(
+  const filteredCart = productAll.filter(
     (cartProduct) => cartProduct.email == email
   );
-  console.log(filteredCart);
+
   return (
     <div>
       <div className="my-10">
@@ -23,7 +24,8 @@ const Cart = () => {
           <CartCard
             key={products._id}
             products={products}
-            cartProducts={cartProducts}
+            productAll={productAll}
+            setProductAll={setProductAll}
           ></CartCard>
         ))}
       </div>
