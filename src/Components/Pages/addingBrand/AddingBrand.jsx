@@ -1,7 +1,10 @@
 
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const AddingBrand = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
     const handleAddBrand = (event) =>{
         event.preventDefault();
 
@@ -33,7 +36,7 @@ const AddingBrand = () => {
                   })
                 }
         })
-
+        navigate(location?.state ? location.state : "/");
     }
   return (
     <div>
@@ -68,7 +71,7 @@ const AddingBrand = () => {
                   required
                 />
               </div>
-              <div className='w-full'>
+              <div className='w-full flex items-center justify-center'>
               <input type="submit" value="Add Product" className="btn btn-neutral" />
               </div>
             </form>

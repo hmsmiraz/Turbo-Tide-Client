@@ -29,7 +29,6 @@ const ProductDetails = () => {
       rating,
       picture,
     };
-    console.log(addProductCart);
     fetch("http://localhost:5000/cart", {
       method: "POST",
       headers: {
@@ -39,7 +38,7 @@ const ProductDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",

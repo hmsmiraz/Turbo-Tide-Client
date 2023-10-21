@@ -13,7 +13,7 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+
     const form = new FormData(e.currentTarget);
 
     const name = form.get("name");
@@ -23,6 +23,20 @@ const Register = () => {
     setRegisterError("");
     setSuccess("");
 
+    if (password.length < 6) {
+      setRegisterError("Password should be at least 6 characters or longer");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setRegisterError(
+        "Your password should have at least one upper case characters."
+      );
+      return;
+    } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?/~\\-]/.test(password)) {
+      setRegisterError(
+        "Your password should have at least one special characters."
+      );
+      return;
+    }
     createUser(email, password)
       .then((result) => {
         setSuccess("User Created Successfully.");
@@ -62,7 +76,7 @@ const Register = () => {
               icon: "success",
               confirmButtonText: "Cool",
             });
-            // window.location.reload();
+            window.location.reload();
           })
           .catch((error) => {
             console.log(error);
@@ -142,15 +156,13 @@ const Register = () => {
             <button className="btn btn-primary">Register</button>
           </div>
         </form>
-        {/* {registerError && <p className="text-red-700 text-center">{registerError}</p>} */}
+        {registerError && <p className="text-red-700 text-center">{registerError}</p>}
         <p className="text-center mt-4">
           Already have an account?{" "}
           <Link className="text-blue-600 font-bold" to="/login">
             Login
           </Link>
         </p>
-
-        {/* {success ? swal("Login Successfully") : ""} */}
       </div>
     </div>
   );

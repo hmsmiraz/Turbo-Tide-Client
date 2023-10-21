@@ -1,6 +1,9 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddingProduct = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleAddProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -44,6 +47,7 @@ const AddingProduct = () => {
           });
         }
       });
+      navigate(location?.state ? location.state : "/");
   };
   return (
     <div>

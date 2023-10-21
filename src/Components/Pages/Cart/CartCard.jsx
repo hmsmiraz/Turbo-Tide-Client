@@ -31,7 +31,7 @@ const CartCard = ({ products, productAll, setProductAll}) => {
     navigate(location?.state ? location.state : "/");
   };
   const handleDelete = (_id) => {
-    console.log(_id);
+    // console.log(_id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -50,7 +50,7 @@ const CartCard = ({ products, productAll, setProductAll}) => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your Coffee has been deleted.", "success");
               const remaining = productAll.filter((item) => item._id !== _id);

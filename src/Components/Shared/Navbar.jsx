@@ -42,14 +42,14 @@ const Navbar = () => {
       <li>
         <NavLink to="/Cart">Cart</NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to="/register">Register</NavLink>
-      </li>
+      </li> */}
     </>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div data-aos="fade-down" className="navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
