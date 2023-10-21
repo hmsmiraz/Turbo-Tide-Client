@@ -42,9 +42,6 @@ const Navbar = () => {
       <li>
         <NavLink to="/Cart">Cart</NavLink>
       </li>
-      {/* <li>
-        <NavLink to="/register">Register</NavLink>
-      </li> */}
     </>
   );
 
