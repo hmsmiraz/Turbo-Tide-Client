@@ -27,9 +27,12 @@ const Register = () => {
       .then((result) => {
         setSuccess("User Created Successfully.");
         console.log(result.user);
+        const createdAt = result.user?.metadata?.creationTime;
+        const uid = result.user?.uid;
         const user = {
             email,
-            uId: result.user?.uid,
+            createdAt: createdAt,
+            uid: uid,
           };
         fetch(
           "http://localhost:5000/users",

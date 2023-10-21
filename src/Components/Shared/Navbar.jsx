@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import AOS from "aos";
@@ -8,7 +8,8 @@ import { AuthContext } from "../Providers/AuthProviders";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
@@ -22,6 +23,7 @@ const Navbar = () => {
           icon: "success",
           confirmButtonText: "Cool",
         });
+        navigate(location?.state ? location.state : "/");
       })
       .catch();
   };
@@ -34,7 +36,7 @@ const Navbar = () => {
             <NavLink to="/addProduct">Add Product</NavLink>
           </li>
           <li>
-            <NavLink to="/myCart">My Cart</NavLink>
+            <NavLink to="/Cart">Cart</NavLink>
           </li>
           <li>
             <NavLink to="/register">Register</NavLink>

@@ -11,13 +11,13 @@ const Login = () => {
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
-    console.log(email, password);
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
         const user = {
           email,
-          uId: result.user?.uid,
+          uid: result.user?.uid,
+          lastLoggedAt: result.user?.metadata?.lastSignInTime,
         };
         // update last logged at in the database
         fetch(
@@ -62,6 +62,30 @@ const Login = () => {
           icon: "success",
           confirmButtonText: "Cool",
         });
+        const email = result.user?.email;
+        const createdAt = result.user?.metadata?.creationTime;
+        const lastLoggedAt = result.user?.metadata?.lastSignInTime;
+        const uid = result.user?.uid;
+        const user = {
+          email : email,
+          createdAt : createdAt,
+          lastLoggedAt : lastLoggedAt,
+          uid : uid,
+        };
+        fetch(
+          "http://localhost:5000/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
