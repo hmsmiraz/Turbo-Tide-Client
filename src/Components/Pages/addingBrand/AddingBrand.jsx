@@ -17,7 +17,7 @@ const AddingBrand = () => {
 
         console.log(newBrand);
 
-        fetch('http://localhost:5000/brand', {
+        fetch('https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/brand', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

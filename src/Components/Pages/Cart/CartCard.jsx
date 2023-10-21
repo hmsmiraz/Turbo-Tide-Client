@@ -43,7 +43,7 @@ const CartCard = ({ products, productAll, setProductAll}) => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `http://localhost:5000/cart/${_id}`,
+          `https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/cart/${_id}`,
           {
             method: "DELETE",
           }

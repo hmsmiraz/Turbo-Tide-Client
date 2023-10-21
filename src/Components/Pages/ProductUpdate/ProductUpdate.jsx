@@ -37,7 +37,7 @@ const ProductUpdate = () => {
     };
     console.log(updateProduct);
      // send data to the server
-     fetch(`http://localhost:5000/products/${_id}`, {
+     fetch(`https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/products/${_id}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'

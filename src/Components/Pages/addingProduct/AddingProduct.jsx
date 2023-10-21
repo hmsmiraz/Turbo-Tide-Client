@@ -28,7 +28,7 @@ const AddingProduct = () => {
 
     console.log(newProduct);
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

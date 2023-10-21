@@ -49,7 +49,7 @@ const Register = () => {
             uid: uid,
           };
         fetch(
-          "http://localhost:5000/users",
+          "https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/users",
           {
             method: "POST",
             headers: {
