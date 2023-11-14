@@ -28,12 +28,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/brand"),
+        loader: () => fetch("https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/brand"),
       },
       {
         path: "/brand",
         element: <Brand></Brand>,
-        loader: () => fetch("https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/brand"),
+        loader: () => fetch("https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/brand"),
       },
       {
         path: "/addBrand",
@@ -42,24 +42,24 @@ const router = createBrowserRouter([
       {
         path: "/addProduct",
         element: <PrivateRoutes><AddingProduct></AddingProduct></PrivateRoutes>,
-        loader: () => fetch("https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/products"),
+        loader: () => fetch("https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/products"),
       },
       {
         path: "/brand/:name",
         element: <Products></Products>,
-        loader: () => fetch("https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/products"),
+        loader: () => fetch("https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/products"),
       },
       {
         path: "/products/:id",
         element: <PrivateRoutes><ProductDetails></ProductDetails></PrivateRoutes>,
         loader: ({ params }) =>
-          fetch(`https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/products/${params.id}`),
+          fetch(`https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/products/${params.id}`),
       },
       {
         path: "/product/:id",
         element: <PrivateRoutes><ProductUpdate></ProductUpdate></PrivateRoutes>,
         loader: ({ params }) =>
-          fetch(`https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/products/${params.id}`),
+          fetch(`https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/products/${params.id}`),
       },
       {
         path: "/login",
@@ -76,12 +76,12 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <PrivateRoutes><Users></Users></PrivateRoutes>,
-        loader: ()=> fetch('https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/users')
+        loader: ()=> fetch('https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/users')
       },
       {
         path: "/cart",
         element: <PrivateRoutes><Cart></Cart></PrivateRoutes>,
-        loader: ()=> fetch('https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/cart')
+        loader: ()=> fetch('https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/cart')
       },
     ],
   },

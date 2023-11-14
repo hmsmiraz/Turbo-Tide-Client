@@ -21,7 +21,7 @@ const Login = () => {
         };
         // update last logged at in the database
         fetch(
-          "https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/users",
+          "https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/users",
           {
             method: "PATCH",
             headers: {
@@ -73,7 +73,7 @@ const Login = () => {
           uid : uid,
         };
         fetch(
-          "https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/users",
+          "https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/users",
           {
             method: "POST",
             headers: {

@@ -29,7 +29,7 @@ const ProductDetails = () => {
       rating,
       picture,
     };
-    fetch("https://turbo-tide-server-8fb5dss19-hmsmiraz.vercel.app/cart", {
+    fetch("https://turbo-tide-server-oijo0zt6m-hmsmiraz.vercel.app/cart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
